@@ -1,0 +1,83 @@
+﻿<%-- Phong Huynh - 810194340, hnhp0025
+Web Application Development
+Project Part 2 
+Independent Initiative: ADO.NET Insert - orderClass.cs
+--%>
+
+<%-- All images are from http://commons.wikimedia.org/wiki/Main_Page --%>
+
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+<%@ Register TagPrefix="uc" TagName="firstUC" Src="~/WebUserControl.ascx" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title><%= pp_masterTitle %></title>
+    <%-- default content for header --%>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="container">
+        <div id="header">
+        <h1><%= pp_heading %></h1>
+        <%-- Logo linking to home page --%>
+        <a href="Default.aspx"><img src="App_Themes/Theme1/phongsrestaurantlogo.jpg" alt="Logo" /></a>
+
+        </div> <%-- end header --%>
+        <%--
+        <div id="menu"> 
+        <ul>    
+            <li><a href="Default.aspx">Home</a></li>
+            <li><a href="Menu.aspx">Menu</a></li>
+            <li><a href="OrderForm.aspx">Order Online</a></li>
+            <li><a href="About.aspx">About</a></li>
+            <li><a href="Contact.aspx">Contact</a></li>
+        </ul>
+        </div> --%>
+
+        <%-- Navigation Menu --%>
+        <asp:Menu ID="NavigationMenu" runat="server" Orientation="Horizontal" DataSourceID="smd_main" StaticDisplayLevels="2" BackColor="#3A3A3A" ForeColor="White" Width="960px" >
+            <StaticMenuItemStyle HorizontalPadding="40px" VerticalPadding="10px" />
+            <StaticSelectedStyle ForeColor="Black" BackColor="White" />
+            <StaticHoverStyle BackColor="Teal" />
+        
+        </asp:Menu>
+
+        <asp:SiteMapDataSource ID="smd_main" runat="server" />
+
+        <div id="content">
+            <%-- holds default content for content --%>
+            <div id="left">
+            <asp:ContentPlaceHolder ID="cph_contentleft" runat="server">
+            <asp:Literal ID="ltl_textleft" runat="server" Text="Default Master Text. Left side" />
+            </asp:ContentPlaceHolder>
+            </div> <%-- end left --%>
+
+            <%-- default content for right div: holds the coupon form --%>
+            <asp:ContentPlaceHolder ID="cph_contentright" runat="server">
+                <div id="right">
+                <br /><br />
+                    <%-- Coupon Image --%>
+                    <asp:Image ID="img_coupon" runat="server" ImageUrl="App_Themes/Theme1/coupon.jpg" AlternateText="Coupon" />
+                    <br />
+                    <br />
+                    <%-- Coupon User Control Form --%>
+                    <uc:firstUC ID="uc_couponform" runat="server" />
+                </div>
+                <%-- end right  --%>
+            </asp:ContentPlaceHolder>
+
+        </div><%-- end content --%>
+        <div id="footer">
+        <asp:Label runat="server" Text="&copy; 2012 | Phong Huynh - HTTP 500 | Midterm Project" SkinID="whitetext" EnableTheming="true" />
+
+        <%-- SiteMap button links to treeview page --%>
+        <div id="sitemap"><asp:LinkButton ID="lkb_treeview" runat="server" Text="SiteMap" OnClick="subTreeView" /></div>
+        </div><%-- end footer --%>
+        
+    </div><%-- end container --%>
+    </form>
+</body>
+</html>

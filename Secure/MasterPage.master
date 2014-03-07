@@ -1,0 +1,71 @@
+﻿<%-- Phong Huynh - 810194340, hnhp0025
+Web Application Development
+Final Project
+username: admin, password: admin
+Independent Initiative: Search inside View Menu
+--%>
+
+
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+<%@ Register TagPrefix="uc" TagName="firstUC" Src="~/WebUserControl.ascx" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title><%= pp_masterTitle %></title>
+    <%-- default content for header --%>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="container">
+        <div id="header">
+        <h1><%= pp_heading %></h1>
+        <%-- Logo linking to home page --%>
+        <a href="Default.aspx"> <asp:Image ID="img_logo" runat="server" ImageUrl="~/App_Themes/Theme1/phongsrestaurantlogo.jpg" AlternateText="Coupon" /></a>
+
+        </div> <%-- end header --%>
+
+        <div id="menu"> 
+        <ul>    
+            <li><a href="Default.aspx">Home</a></li>
+            <li><a href="Content.aspx">Content</a></li>
+            <li><a href="Contact.aspx">Contact</a></li>
+            <li><a href="Orders.aspx">Orders</a></li>
+            <li><a href="MenuTable.aspx">Edit Menu Table</a></li>
+            <li><a href="Menu.aspx">View Menu</a></li>
+        </ul>
+        </div>
+
+
+        <asp:SiteMapDataSource ID="smd_main" runat="server" />
+
+        <div id="content">
+            <%-- holds default content for content --%>
+            <div id="left">
+            <asp:ContentPlaceHolder ID="cph_contentleft" runat="server">
+            <asp:Literal ID="ltl_textleft" runat="server" Text="Default Master Text. Left side" />
+            </asp:ContentPlaceHolder>
+            </div> <%-- end left --%>
+
+            <%-- default content for right div: holds the coupon form --%>
+            <asp:ContentPlaceHolder ID="cph_contentright" runat="server">
+                <div id="right">
+                <br /><br />
+                </div>
+                <%-- end right  --%>
+            </asp:ContentPlaceHolder>
+
+        </div><%-- end content --%>
+        <div id="footer">
+        <asp:Label runat="server" Text="&copy; 2012 | Phong Huynh - HTTP 500 | Final Project" SkinID="whitetext" EnableTheming="true" />
+
+        <%-- SiteMap button links to treeview page --%>
+        <div id="sitemap"><asp:LinkButton ID="lkb_treeview" runat="server" Text="SiteMap" OnClick="subTreeView" /></div>
+        </div><%-- end footer --%>
+        
+    </div><%-- end container --%>
+    </form>
+</body>
+</html>
